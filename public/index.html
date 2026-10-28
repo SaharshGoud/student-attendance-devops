@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Attendance Management</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">SA</div>
+    <div><h1>Attendance <span>Studio</span></h1><p>Student Attendance Management System</p></div>
+    <div class="top-status"><span class="status-dot"></span> System online</div>
+  </header>
+  <main class="container">
+    <section class="welcome">
+      <div><p class="eyebrow">FACULTY WORKSPACE</p><h2>Good day. Let's take attendance.</h2><p class="muted">Record daily periods and review class attendance in one place.</p></div>
+      <div class="date-card"><label for="attendanceDate">Attendance date</label><input id="attendanceDate" type="date" /></div>
+    </section>
+    <nav class="tabs" aria-label="Attendance sections">
+      <button class="tab active" data-tab="daily">Daily attendance</button>
+      <button class="tab" data-tab="monthly">Monthly report</button>
+      <button class="tab" data-tab="students">Students</button>
+    </nav>
+    <section id="dailyPanel" class="panel">
+      <div class="section-heading"><div><p class="eyebrow">DAILY REGISTER</p><h3>Class attendance</h3><p class="muted">Mark each period as present or absent. Blank cells are not yet recorded.</p></div><div class="legend"><span class="pill present">P · Present</span><span class="pill absent">A · Absent</span></div></div>
+      <div class="toolbar"><div class="toolbar-left"><button id="allPresent" class="button secondary">Mark all present</button><button id="allAbsent" class="button secondary">Mark all absent</button></div><button id="saveAttendance" class="button primary">Save attendance</button></div>
+      <div class="table-wrap"><table id="attendanceTable"><thead><tr><th>Roll no.</th><th>Student</th><th>Department</th><th>P1</th><th>P2</th><th>P3</th><th>P4</th><th>P5</th><th>P6</th><th>P7</th></tr></thead><tbody></tbody></table></div>
+      <p id="dailyMessage" class="message" role="status"></p>
+    </section>
+    <section id="monthlyPanel" class="panel hidden">
+      <div class="section-heading"><div><p class="eyebrow">ATTENDANCE INSIGHTS</p><h3>Monthly report</h3><p class="muted">Review attendance totals and identify students below the threshold.</p></div></div>
+      <div class="report-controls"><label>Month <input id="reportMonth" type="month" /></label><label>Minimum attendance (%) <input id="threshold" type="number" min="0" max="100" value="75" /></label><button id="generateReport" class="button primary">Generate report</button><button id="exportCsv" class="button secondary">Export CSV</button></div>
+      <div class="stats"><article class="stat"><span>Students</span><strong id="studentStat">—</strong></article><article class="stat"><span>Class average</span><strong id="averageStat">—</strong></article><article class="stat"><span>Below threshold</span><strong id="lowStat">—</strong></article></div>
+      <div class="table-wrap"><table id="reportTable"><thead><tr><th>Roll no.</th><th>Student</th><th>Working periods</th><th>Present</th><th>Absent</th><th>Attendance</th><th>Status</th></tr></thead><tbody></tbody></table></div>
+      <p id="reportMessage" class="message" role="status"></p>
+    </section>
+    <section id="studentsPanel" class="panel hidden">
+      <div class="section-heading"><div><p class="eyebrow">CLASS DIRECTORY</p><h3>Students</h3><p class="muted">Add students to the register. Roll numbers must be unique.</p></div></div>
+      <form id="studentForm" class="student-form"><label>Roll number<input id="rollNo" required placeholder="e.g. 106" /></label><label>Student name<input id="studentName" required placeholder="Full name" /></label><label>Department<input id="department" value="CSE" required /></label><button class="button primary" type="submit">Add student</button></form>
+      <div class="table-wrap"><table><thead><tr><th>Roll no.</th><th>Student</th><th>Department</th></tr></thead><tbody id="studentsBody"></tbody></table></div>
+      <p id="studentMessage" class="message" role="status"></p>
+    </section>
+    <footer>Student Attendance Management System <span>·</span> DevOps project starter</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
