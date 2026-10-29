@@ -2,6 +2,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'NodeJS22'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -24,7 +28,8 @@ pipeline {
 
         stage('Validate') {
             steps {
-                sh 'node --check server.js && node --check public/app.js'
+                sh 'node --check server.js'
+                sh 'node --check public/app.js'
             }
         }
 
@@ -41,3 +46,4 @@ pipeline {
         }
     }
 }
+
